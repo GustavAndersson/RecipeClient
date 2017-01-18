@@ -1,0 +1,18 @@
+<div class="container" id="recipes">
+    <div class="form2 text-right">
+        <form class="form-inline">
+            <div class="input-group">
+                <input type="text" class="form-control" size="50" ng-model="query" placeholder="Search your favorite food here..." required>
+                <div class="input-group-btn">
+                    <button type="button" class="btn">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-lg-3" ng-repeat="recipes in table| filter:query">
+            <img src={{recipes.picture}} class="img-responsive" alt="image">
+            <p>{{recipes.name}}</p>
+        </div>
+    </div>
+</div>
