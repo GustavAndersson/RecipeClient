@@ -1,4 +1,11 @@
-.form2{
-    padding-top: 5vh;
+#recipes{
     padding-bottom: 5vh;
+}
+
+.mealBox{
+    padding-top: 5vh;
+}
+
+body{
+    background-color: #ECECEC;
 }

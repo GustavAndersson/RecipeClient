@@ -1,5 +1,5 @@
-<div class="container" id="recipes">
-    <div class="form2 text-right">
+<div class="start">
+    <div class="form text-center">
         <form class="form-inline">
             <div class="input-group">
                 <input type="text" class="form-control" size="50" ng-model="query" placeholder="Search your favorite food here..." required>
@@ -9,10 +9,16 @@
             </div>
         </form>
     </div>
+</div>  
+
+<div class="container" id="recipes">
     <div class="row">
-        <div class="col-lg-3" ng-repeat="recipes in table| filter:query">
-            <img src={{recipes.picture}} class="img-responsive" alt="image">
-            <p>{{recipes.name}}</p>
+        <div class="mealBox col-md-3 col-sm-6" ng-repeat="viewRecipes in table| filter:query">
+            <img src={{viewRecipes.picture}} class="img-responsive img-thumbnail" alt="image">
+            <h4>{{viewRecipes.recipe}}</h4>
+            <p>{{viewRecipes.categori}}</p>
+            <i>{{viewRecipes.author}}</i>
         </div>
     </div>
 </div>
+

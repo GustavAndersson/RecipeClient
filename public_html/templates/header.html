@@ -6,27 +6,36 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                        
             </button>
-            <a class="navbar-brand" href="#myPage"><img src="img/firstLogo.png" alt="Smiley face" height="42" width="42"></a>
+            <img src="img/firstLogo.png" alt="Logotype" height="50" width="50">
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="hvr-underline-from-center" href="#myPage">HOME</a></li>
-                <li><a class="hvr-underline-from-center" href="#band">RECIPES</a></li>
-                <li><a class="hvr-underline-from-center" href="#tour">CATEGORIES</a></li>
-                <li><a class="hvr-underline-from-center" href="#contact">CONTACT</a></li>
+                <li><a class="hvr-underline-from-center" ui-sref="recipe">RECIPES</a></li>
+                <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" href="#band">ADD RECIPE</a></li>
+                <li><a class="hvr-underline-from-center" ng-hide="isLoggedIn" data-toggle="modal" data-target="#myModal">LOGIN/REGISTER</a></li>
+                <li><a class="hvr-underline-from-center" href="#tour">ABOUT</a></li>
+                <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" href="#tour">LOGOUT</a></li>
             </ul>
-        </div>
+        </div>  
     </div>
 </nav>
-<div class="start">
-    <div class="form text-center">
-    <form class="form-inline">
-        <div class="input-group">
-            <input type="text" class="form-control" size="50" ng-model="query" placeholder="Search your favorite food here..." required>
-            <div class="input-group-btn">
-                <button type="button" class="btn">Search</button>
+
+<div class="modal fade" id="myModal" role="dialog" ng-controller="loggInCtrl">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Login or create an account</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <label>Username: <input ng-model="name" type="text" /></label><br/>
+                    <label>Password: <input ng-model="password" type="password" /></label><br/>
+                    <div class="modal-footer">
+                        <input class="btn btn-block" ng-click="createUser()" type="submit" value="Submit" data-dismiss="modal"/>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
     </div>
 </div>
