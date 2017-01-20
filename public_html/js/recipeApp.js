@@ -52,6 +52,7 @@ module.service("recipeService", function ($q, $rootScope, $http) {
             data: data
         }).then(function (data) {
             console.log("Användare tillagd");
+            alert("Welcome to FoodBase " + name);
         },function (data){
             console.log("Användare med detta namnet finns redan, loggar in istället");
             loggIn(name, password);
@@ -72,7 +73,7 @@ module.service("recipeService", function ($q, $rootScope, $http) {
             $rootScope.user = username;
             $rootScope.pass = password;
         }, function(data) {
-            alert("Wrong password");
+            alert("Sorry, wrong password. Try again or create a new user");
             console.log("Du kan inte logga in");
         });
     };
