@@ -8,7 +8,7 @@ module.config(function ($urlRouterProvider, $stateProvider) {
         templateUrl: "templates/home.html",
         controller: "homeCtrl"
     }).state("recipe", {
-        url:"/recipe",
+        url:"/recipe/:id",
         templateUrl: "templates/recipe.html",
         controller:"recipeCtrl"
     });
@@ -29,11 +29,33 @@ module.controller("loggInCtrl", function ($scope, recipeService){
     };
 });
 
+module.controller("recipeCtrl", function ($scope, $stateParams, recipeService){
+    var id = $stateParams;
+    var promise = recipeService.getRecipe(id.id);
+
+    promise.then(function (data){
+        console.log(data.data);
+        $scope.name = data.data[0].name;
+        $scope.description = data.data[0].description;
+        $scope.instruction = data.data[0].instruction;
+        $scope.picture = data.data[0].picture;
+    });
+});
+
 module.service("recipeService", function ($q, $rootScope, $http) {
     this.getTable = function () {
         var deffer = $q.defer();
         var url = "http://localhost:8080/RecipeApp/webresources/viewRecipes";
         $http.get(url).then(function (data) {
+            deffer.resolve(data);
+        });
+        return deffer.promise;
+    };
+    
+    this.getRecipe = function(id){
+        var deffer = $q.defer();
+        var url = "http://localhost:8080/RecipeApp/webresources/recipe/" + id;
+        $http.get(url).then(function(data){
             deffer.resolve(data);
         });
         return deffer.promise;

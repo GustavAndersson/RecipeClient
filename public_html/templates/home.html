@@ -14,7 +14,7 @@
 <div class="container" id="recipes">
     <div class="row">
         <div class="mealBox col-md-3 col-sm-6" ng-repeat="viewRecipes in table| filter:query">
-            <img src={{viewRecipes.picture}} class="img-responsive img-thumbnail" alt="image">
+            <a href="http://localhost:8383/RecipeClient/index.html#!/recipe/{{viewRecipes.id}}"><img src={{viewRecipes.picture}} class="img-responsive img-thumbnail" alt="image"></a>
             <h4>{{viewRecipes.recipe}}</h4>
             <p>{{viewRecipes.categori}}</p>
             <i>{{viewRecipes.author}}</i>
