@@ -8,42 +8,54 @@ module.config(function ($urlRouterProvider, $stateProvider) {
         templateUrl: "templates/home.html",
         controller: "homeCtrl"
     }).state("recipe", {
-        url:"/recipe/:id",
+        url: "/recipe/:id",
         templateUrl: "templates/recipe.html",
-        controller:"recipeCtrl"
+        controller: "recipeCtrl"
     }).state("addRecipe", {
-        url:"/addRecipe",
+        url: "/addRecipe",
         templateUrl: "templates/addRecipe.html",
-        controller:"addRecipeCtrl"
+        controller: "addRecipeCtrl"
     });
 });
 
-module.controller("homeCtrl", function ($scope, recipeService) {
+module.controller("homeCtrl", function ($scope, $rootScope, recipeService) {
     var promise = recipeService.getTable();
     promise.then(function (data) {
         $scope.table = data.data;
-        
         console.log(data.data);
     });
+
+    $scope.removeRecipe = function (id) {
+        var promise = recipeService.getViewRecipe(id);
+        promise.then(function (data) {
+            $scope.author = data.data[0].author;
+            if ($rootScope.user === $scope.author) {
+                recipeService.removeRecipe(id);
+                alert("Your recipe was deleted succesfully");
+            } else {
+                alert("You are only allowed to delete your own recipes");
+            }
+        });
+    };
 });
 
-module.controller("loggInCtrl", function ($scope, recipeService){
+module.controller("loggInCtrl", function ($scope, recipeService) {
     $scope.createUser = function () {
         recipeService.createUser($scope.name, $scope.password);
     };
 });
 
-module.controller("addRecipeCtrl", function ($scope, recipeService){
+module.controller("addRecipeCtrl", function ($scope, recipeService) {
     $scope.addRecipe = function () {
         recipeService.addRecipe($scope.name, $scope.category, $scope.description, $scope.instruction, $scope.picture);
     };
 });
 
-module.controller("recipeCtrl", function ($scope, $stateParams, recipeService){
+module.controller("recipeCtrl", function ($scope, $stateParams, recipeService) {
     var id = $stateParams;
     var promise = recipeService.getRecipe(id.id);
 
-    promise.then(function (data){
+    promise.then(function (data) {
         console.log(data.data);
         $scope.name = data.data[0].name;
         $scope.description = data.data[0].description;
@@ -51,7 +63,7 @@ module.controller("recipeCtrl", function ($scope, $stateParams, recipeService){
         $scope.picture = data.data[0].picture;
     });
     var promiseIng = recipeService.getRecipeIngredients(id.id);
-    promiseIng.then(function(data){
+    promiseIng.then(function (data) {
         console.log(data.data);
         $scope.table = data.data;
     });
@@ -66,25 +78,34 @@ module.service("recipeService", function ($q, $rootScope, $http) {
         });
         return deffer.promise;
     };
-    
-    this.getRecipe = function(id){
+
+    this.getRecipe = function (id) {
         var deffer = $q.defer();
         var url = "http://localhost:8080/RecipeApp/webresources/recipe/" + id;
-        $http.get(url).then(function(data){
+        $http.get(url).then(function (data) {
             deffer.resolve(data);
         });
         return deffer.promise;
     };
-    
-    this.getRecipeIngredients = function(id){
+
+    this.getViewRecipe = function (id) {
+        var deffer = $q.defer();
+        var url = "http://localhost:8080/RecipeApp/webresources/viewRecipe/" + id;
+        $http.get(url).then(function (data) {
+            deffer.resolve(data);
+        });
+        return deffer.promise;
+    };
+
+    this.getRecipeIngredients = function (id) {
         var deffer = $q.defer();
         var url = "http://localhost:8080/RecipeApp/webresources/ingredients/" + id;
-        $http.get(url).then(function(data){
+        $http.get(url).then(function (data) {
             deffer.resolve(data);
         });
         return deffer.promise;
     };
-    
+
     this.createUser = function (name, password) {
         var data = {
             name: name,
@@ -99,12 +120,12 @@ module.service("recipeService", function ($q, $rootScope, $http) {
         }).then(function (data) {
             console.log("Användare tillagd");
             alert("Welcome to FoodBase " + name);
-        },function (data){
+        }, function (data) {
             console.log("Användare med detta namnet finns redan, loggar in istället");
             loggIn(name, password);
         });
     };
-    
+
     loggIn = function (username, password) {
         var url = "http://localhost:8080/RecipeApp/webresources/login";
         var auth = "Basic " + window.btoa(username + ":" + password);
@@ -119,12 +140,12 @@ module.service("recipeService", function ($q, $rootScope, $http) {
             $rootScope.user = username;
             $rootScope.pass = password;
             console.log(username, password);
-        }, function(data) {
+        }, function (data) {
             alert("Sorry, wrong password. Try again or create a new user");
             console.log("Du kan inte logga in");
         });
-    };  
-    
+    };
+
     this.addRecipe = function (name, category, description, instruction, picture) {
         var data = {
             name: name,
@@ -144,9 +165,25 @@ module.service("recipeService", function ($q, $rootScope, $http) {
         }).then(function (data) {
             console.log("Recept tillagt");
             alert("Du har lagt till: " + name);
-        },function (data){
+        }, function (data) {
             console.log("Det gick inte att lägga till receptet");
         });
     };
-    
+
+    this.removeRecipe = function (id) {
+        var url = "http://localhost:8080/RecipeApp/webresources/recipe/" + id;
+        var auth = "Basic " + window.btoa($rootScope.user + ":" + $rootScope.pass);
+
+        $http({
+            url: url,
+            method: "DELETE",
+            headers: {'Authorization': auth}
+        }).then(function (data) {
+            console.log("Receptet raderades");
+        })(function (data) {
+            console.log("det blev fel");
+        });
+
+    };
+
 });

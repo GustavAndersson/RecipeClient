@@ -61,6 +61,7 @@
 
 .btn{
     background-color: #BBDA55;
+    float: right;
     color: white;
     height: 8vh;
 }
