@@ -10,8 +10,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="hvr-underline-from-center" ui-sref="recipe">RECIPES</a></li>
-                <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" href="#band">ADD RECIPE</a></li>
+                <li><a class="hvr-underline-from-center" ui-sref="home">HOME</a></li>
+                <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" ui-sref="addRecipe">ADD RECIPE</a></li>
                 <li><a class="hvr-underline-from-center" ng-hide="isLoggedIn" data-toggle="modal" data-target="#myModal">LOGIN/REGISTER</a></li>
                 <li><a class="hvr-underline-from-center" href="#tour">ABOUT</a></li>
                 <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" href="#tour">LOGOUT</a></li>
@@ -29,8 +29,13 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <label>Username: <input ng-model="name" type="text" /></label><br/>
-                    <label>Password: <input ng-model="password" type="password" /></label><br/>
+                    <div class="form-group-sm">
+                    <label>Username</label>
+                    <input class="form-control" ng-model="name" type="text"><br/>
+                    <label>Password</label>
+                    <input class="form-control" ng-model="password" type="password"><br/>
+                    </div>
+
                     <div class="modal-footer">
                         <input class="btn btn-block" ng-click="createUser()" type="submit" value="Submit" data-dismiss="modal"/>
                     </div>

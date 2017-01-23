@@ -1,12 +1,33 @@
-<div class="black"></div>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <img class="center-block" src={{picture}}>
-            <h1>{{name}}</h1>
+        <div class="pic col-md-4">
+            <img class="big-pic img-thumbnail" src={{picture}} alt="picture">
+        </div>
+        <div class="pic col-md-4">
+            <h1 class="hvr-underline-from-center">{{name}}</h1>
             <p>{{description}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="box">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ingredients</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ing in table">
+                            <td>{{ing.amount}} {{ing.ing}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
             <p>{{instruction}}</p>
-            <p>{{byID}}</p>
         </div>
     </div>
 </div>

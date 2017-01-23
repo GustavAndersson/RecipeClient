@@ -1,3 +1,20 @@
-.center-block{
-    padding-top: 50px;
+.pic{
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+.big-pic{
+    width: 350px;
+    height: 250px;
+}
+
+.table{
+    width: 10vw;
+}
+
+.box{
+    color: white;
+    background-color: black;
+    width: 136px;
+    opacity: 0.7;
 }

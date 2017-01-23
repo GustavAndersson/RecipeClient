@@ -5,9 +5,9 @@
         <group>
             <file>file:/C:/TE4/RecipeClient/public_html/templates/header.html</file>
             <file>file:/C:/TE4/RecipeClient/public_html/js/recipeApp.js</file>
-            <file>file:/C:/TE4/RecipeClient/public_html/index.html</file>
-            <file>file:/C:/TE4/RecipeClient/public_html/css/home.css</file>
+            <file>file:/C:/TE4/RecipeClient/public_html/templates/addRecipe.html</file>
             <file>file:/C:/TE4/RecipeClient/public_html/templates/recipe.html</file>
+            <file>file:/C:/TE4/RecipeClient/public_html/css/recipe.css</file>
         </group>
     </open-files>
 </project-private>
