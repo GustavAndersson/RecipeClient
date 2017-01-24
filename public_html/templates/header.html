@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="navCtrl">
     <div class="container-fluid">   
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -13,8 +13,7 @@
                 <li><a class="hvr-underline-from-center" ui-sref="home">HOME</a></li>
                 <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" ui-sref="addRecipe">ADD RECIPE</a></li>
                 <li><a class="hvr-underline-from-center" ng-hide="isLoggedIn" data-toggle="modal" data-target="#myModal">LOGIN/REGISTER</a></li>
-                <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" href="http://localhost:8383/RecipeClient/index.html#!/myPage/{{users.userID}}">MY PAGE</a></li>
-                <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" href="#tour">LOGOUT</a></li>
+                <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" ng-click="logout()" href="">LOGOUT</a></li>
             </ul>
         </div>  
     </div>

@@ -18,6 +18,14 @@ module.config(function ($urlRouterProvider, $stateProvider) {
     });
 });
 
+module.controller("navCtrl", function($scope, $rootScope){
+    $scope.logout = function(){
+        $rootScope.isLoggedIn = false;
+        $rootScope.user = "";
+        $rootScope.pass = "";
+    };
+});
+
 module.controller("homeCtrl", function ($scope, $rootScope, recipeService) {
     var promise = recipeService.getTable();
     promise.then(function (data) {
@@ -45,10 +53,30 @@ module.controller("loggInCtrl", function ($scope, recipeService) {
     };
 });
 
-module.controller("addRecipeCtrl", function ($scope, recipeService) {
+module.controller("addRecipeCtrl", function ($scope, $rootScope,recipeService) {
     $scope.addRecipe = function () {
-        recipeService.addRecipe($scope.name, $scope.category, $scope.description, $scope.instruction, $scope.picture);
+        recipeService.addRecipe($scope.name, $scope.categoryID, $scope.description, $scope.instruction, $scope.picture);
     };
+    
+        var promise = recipeService.getCategories();
+        promise.then(function (data) {
+        $scope.categories = data.data;
+        $scope.x = function (){
+            //console.log($scope.categoryID);
+        };
+    });
+    
+    $scope.addIngredientToRecipe = function () {
+        recipeService.addIngredientToRecipe($scope.amount, $scope.ingredient_id);
+    };
+    
+        var promise = recipeService.getIngredients();
+        promise.then(function (data) {
+        $scope.ingredients = data.data;
+        $scope.k = function (){
+            //console.log($scope.ingredient_id);
+        };
+    });
 });
 
 module.controller("recipeCtrl", function ($scope, $stateParams, recipeService) {
@@ -73,6 +101,24 @@ module.service("recipeService", function ($q, $rootScope, $http) {
     this.getTable = function () {
         var deffer = $q.defer();
         var url = "http://localhost:8080/RecipeApp/webresources/viewRecipes";
+        $http.get(url).then(function (data) {
+            deffer.resolve(data);
+        });
+        return deffer.promise;
+    };
+    
+    this.getCategories = function () {
+        var deffer = $q.defer();
+        var url = "http://localhost:8080/RecipeApp/webresources/categories";
+        $http.get(url).then(function (data) {
+            deffer.resolve(data);
+        });
+        return deffer.promise;
+    };
+    
+    this.getIngredients = function () {
+        var deffer = $q.defer();
+        var url = "http://localhost:8080/RecipeApp/webresources/ingredients";
         $http.get(url).then(function (data) {
             deffer.resolve(data);
         });
@@ -146,10 +192,10 @@ module.service("recipeService", function ($q, $rootScope, $http) {
         });
     };
 
-    this.addRecipe = function (name, category, description, instruction, picture) {
+    this.addRecipe = function (name, categoryID, description, instruction, picture) {
         var data = {
             name: name,
-            categori_id: category,
+            categori_id: Number(categoryID),
             description: description,
             instruction: instruction,
             picture: picture
@@ -184,6 +230,27 @@ module.service("recipeService", function ($q, $rootScope, $http) {
             console.log("det blev fel");
         });
 
+    };
+    
+    this.addIngredientToRecipe = function (amount, ingredient_id) {
+        var data = {
+            amount: amount,
+            ingredient_id: Number(ingredient_id)
+        };
+        var url = "http://localhost:8080/RecipeApp/webresources/add/ingredientToRecipe";
+        var auth = "Basic " + window.btoa($rootScope.user + ":" + $rootScope.pass);
+
+        $http({
+            url: url,
+            method: "POST",
+            data: data,
+            headers: {'Authorization': auth}
+        }).then(function (data) {
+            console.log("Ingrediens tillagd");
+            alert("Du har lagt till: " + amount + ingredient_id);
+        }, function (data) {
+            console.log("Det gick inte att lägga till ingrediensen");
+        });
     };
 
 });

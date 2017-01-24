@@ -13,3 +13,11 @@ body{
 .author-text{
     color:#898989;
 }
+
+.wrap{
+    padding-top: 175px;
+}
+
+.foodbase-pic{
+    padding-bottom: 5vh;
+}
