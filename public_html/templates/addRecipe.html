@@ -28,10 +28,11 @@
                 <div class="fieldBox">
                     <label class="hvr-underline-from-center">Picture</label>
                     <input class="form-control" ng-model="picture" type="text"><br/>
+                    <input class="btn" ng-click="addRecipe()" type="submit" value="Add recipe"/>
+
                 </div>
 
             </div>
-            <input class="btn" ng-click="addRecipe()" type="submit" value="Add recipe"/>
         </form>
     </div>
 
@@ -48,9 +49,8 @@
                 <div class="fieldBox">
                     <label class="hvr-underline-from-center">Amount</label>
                     <input class="form-control" ng-model="amount" type="text"><br/>
+                    <input class="btn" ng-click="addIngredientToRecipe()" type="submit" value="Add ingredient"/>
                 </div>
-                
-                <input class="btn" ng-click="addIngredientToRecipe()" type="submit" value="Add ingredient"/>
             </div>
         </form>  
     </div>
