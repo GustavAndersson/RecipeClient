@@ -1,3 +1,11 @@
 .addRecipe{
     padding-top:50px;
 }
+
+.inputBox{
+    padding-top: 3vh;
+}
+
+.fieldBox{
+    text-align:center;
+}

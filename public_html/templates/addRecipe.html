@@ -1,38 +1,57 @@
 <div class="container addRecipe" ng-controller="addRecipeCtrl">
-    <form>
-        <h2 style="text-align:center;">Add recpie</h2>
-        <div class="form-group-sm">
-            <label class="hvr-underline-from-center">Name</label>
-            <input class="form-control" ng-model="name" type="text"><br/>
-            
-            <label class="hvr-underline-from-center">Category</label>
-            <select class="form-control" ng-model="categoryID" ng-selected="x()">
-                <option ng-repeat="categori in categories" value="{{categori.id}}">{{categori.name}}</option>
-            </select><br/>
-            
-            <label class="hvr-underline-from-center">Description</label>
-            <input class="form-control" ng-model="description" type="text"><br/>
-            
-            <label class="hvr-underline-from-center">Instruction</label>
-            <input class="form-control" ng-model="instruction" type="text"><br/>
-            
-            <label class="hvr-underline-from-center">Picture</label>
-            <input class="form-control" ng-model="picture" type="text"><br/>
-            
-        </div>
-        <input class="btn btn-block" ng-click="addRecipe()" type="submit" value="Add recipe"/>
-    </form>
+    <h2 style="text-align:center;">Add recipe to FoodBase</h2>
+    <div class="inputBox col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2">
+        <form>
+            <div class="form-group-sm">
+                <div class="fieldBox">
+                    <label class="hvr-underline-from-center">Name</label>
+                    <input class="form-control" ng-model="name" type="text"><br/>
+                </div>
 
-    <form>
-        <div class="form-group-sm">
-            <h4>Add ingredients</h4>
-            <label class="hvr-underline-from-center">Ingredient</label>
-            <select class="form-control" ng-model="ingredient_id" ng-selected="k()">
-                <option ng-repeat="ingredient in ingredients" value="{{ingredient.id}}">{{ingredient.name}}</option>
-            </select><br/>
-            <label class="hvr-underline-from-center">Amount</label>
-            <input class="form-control" ng-model="amount" type="text"><br/>
-            <input class="btn btn-block" ng-click="addIngredientToRecipe()" type="submit" value="Add ingredient"/>
-        </div>
-    </form>   
+                <div class="fieldBox">
+                    <label class="hvr-underline-from-center">Category</label>
+                    <select class="form-control" ng-model="categoryID" ng-selected="x()">
+                        <option ng-repeat="categori in categories" value="{{categori.id}}">{{categori.name}}</option>
+                    </select><br/>
+                </div>
+
+                <div class="fieldBox">
+                    <label class="hvr-underline-from-center">Description</label>
+                    <input class="form-control" ng-model="description" type="text"><br/>
+                </div>
+
+                <div class="fieldBox">
+                    <label class="hvr-underline-from-center">Instruction</label>
+                    <input class="form-control" ng-model="instruction" type="text"><br/>
+                </div>
+
+                <div class="fieldBox">
+                    <label class="hvr-underline-from-center">Picture</label>
+                    <input class="form-control" ng-model="picture" type="text"><br/>
+                </div>
+
+            </div>
+            <input class="btn btn-primary" ng-click="addRecipe()" type="submit" value="Add recipe"/>
+        </form>
+    </div>
+
+    <div class="inputBox col-md-4 col-sm-4">
+        <form>
+            <div class="form-group-sm">
+                <div class="fieldBox">
+                    <label class="hvr-underline-from-center">Ingredient</label>
+                    <select class="form-control" ng-model="ingredient_id" ng-selected="k()">
+                        <option ng-repeat="ingredient in ingredients" value="{{ingredient.id}}">{{ingredient.name}}</option>
+                    </select><br/>
+                </div>
+
+                <div class="fieldBox">
+                    <label class="hvr-underline-from-center">Amount</label>
+                    <input class="form-control" ng-model="amount" type="text"><br/>
+                </div>
+                
+                <input class="btn btn-primary" ng-click="addIngredientToRecipe()" type="submit" value="Add ingredient"/>
+            </div>
+        </form>  
+    </div>
 </div>
