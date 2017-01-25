@@ -1,5 +1,5 @@
 .navbar {
-    font-family: Montserrat, sans-serif;
+    font-family: 'Comfortaa', cursive;
     margin-bottom: 0;
     background-color: #2d2d30;
     border: 0;
@@ -59,7 +59,19 @@
     height: 8vh;
 }
 
-.btn{
-    float: right;
-    color: white;
+.btn
+{
+    padding: 10px 20px;
+    background-color: #333;
+    color: #ffffff;
+    opacity: 0.7;
+    border-radius: 0;
+    transition: .2s;
+}
+
+.btn:hover, .btn:focus
+{
+    border: 1px solid #333;
+    background-color: #fff;
+    color: #000;
 }

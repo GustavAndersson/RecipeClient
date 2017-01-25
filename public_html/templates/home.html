@@ -16,8 +16,8 @@
             <a href="http://localhost:8383/RecipeClient/index.html#!/recipe/{{viewRecipes.id}}"><img src={{viewRecipes.picture}} class="img-responsive img-thumbnail" alt="image"></a>
             <h4>{{viewRecipes.recipe}}</h4>
             <p>{{viewRecipes.categori}}</p>
-            <i class="author-text">{{viewRecipes.author}}</i>
-            <button ng-show="isLoggedIn" ng-click="removeRecipe(viewRecipes.id)" class="btn btn-danger">X</button>
+            <p class="author-text">{{viewRecipes.author}}</p>
+            <i class="removeButton fa fa-times hvr-icon-pulse-grow "ng-show="isLoggedIn" ng-click="removeRecipe(viewRecipes.id)"></i>
         </div>
     </div>
 </div>

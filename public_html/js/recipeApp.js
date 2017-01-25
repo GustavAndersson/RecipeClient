@@ -61,9 +61,6 @@ module.controller("addRecipeCtrl", function ($scope, $rootScope,recipeService) {
         var promise = recipeService.getCategories();
         promise.then(function (data) {
         $scope.categories = data.data;
-        $scope.x = function (){
-            //console.log($scope.categoryID);
-        };
     });
     
     $scope.addIngredientToRecipe = function () {
@@ -73,9 +70,6 @@ module.controller("addRecipeCtrl", function ($scope, $rootScope,recipeService) {
         var promise = recipeService.getIngredients();
         promise.then(function (data) {
         $scope.ingredients = data.data;
-        $scope.k = function (){
-            //console.log($scope.ingredient_id);
-        };
     });
 });
 

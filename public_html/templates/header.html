@@ -13,6 +13,7 @@
                 <li><a class="hvr-underline-from-center" ui-sref="home">HOME</a></li>
                 <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" ui-sref="addRecipe">ADD RECIPE</a></li>
                 <li><a class="hvr-underline-from-center" ng-hide="isLoggedIn" data-toggle="modal" data-target="#myModal">LOGIN/REGISTER</a></li>
+                <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" >LOGGED IN: {{user}}</a></li>
                 <li><a class="hvr-underline-from-center" ng-show="isLoggedIn" ng-click="logout()" href="">LOGOUT</a></li>
             </ul>
         </div>  
@@ -36,7 +37,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <input class="btn btn-primary" ng-click="createUser()" type="submit" value="Submit" data-dismiss="modal"/>
+                        <input class="btn" ng-click="createUser()" type="submit" value="Submit" data-dismiss="modal"/>
                     </div>
                 </form>
             </div>

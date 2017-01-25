@@ -10,7 +10,7 @@
 
                 <div class="fieldBox">
                     <label class="hvr-underline-from-center">Category</label>
-                    <select class="form-control" ng-model="categoryID" ng-selected="x()">
+                    <select class="form-control" ng-model="categoryID">
                         <option ng-repeat="categori in categories" value="{{categori.id}}">{{categori.name}}</option>
                     </select><br/>
                 </div>
@@ -31,7 +31,7 @@
                 </div>
 
             </div>
-            <input class="btn btn-primary" ng-click="addRecipe()" type="submit" value="Add recipe"/>
+            <input class="btn" ng-click="addRecipe()" type="submit" value="Add recipe"/>
         </form>
     </div>
 
@@ -40,7 +40,7 @@
             <div class="form-group-sm">
                 <div class="fieldBox">
                     <label class="hvr-underline-from-center">Ingredient</label>
-                    <select class="form-control" ng-model="ingredient_id" ng-selected="k()">
+                    <select class="form-control" ng-model="ingredient_id">
                         <option ng-repeat="ingredient in ingredients" value="{{ingredient.id}}">{{ingredient.name}}</option>
                     </select><br/>
                 </div>
@@ -50,7 +50,7 @@
                     <input class="form-control" ng-model="amount" type="text"><br/>
                 </div>
                 
-                <input class="btn btn-primary" ng-click="addIngredientToRecipe()" type="submit" value="Add ingredient"/>
+                <input class="btn" ng-click="addIngredientToRecipe()" type="submit" value="Add ingredient"/>
             </div>
         </form>  
     </div>
