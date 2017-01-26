@@ -75,7 +75,7 @@ module.controller("addRecipeCtrl", function ($scope, $rootScope,recipeService) {
 
 module.controller("recipeCtrl", function ($scope, $stateParams, recipeService) {
     var id = $stateParams;
-    var promise = recipeService.getRecipe(id.id);
+    var promise = recipeService.getViewRecipe(id.id);
 
     promise.then(function (data) {
         console.log(data.data);
@@ -113,15 +113,6 @@ module.service("recipeService", function ($q, $rootScope, $http) {
     this.getIngredients = function () {
         var deffer = $q.defer();
         var url = "http://localhost:8080/RecipeApp/webresources/ingredients";
-        $http.get(url).then(function (data) {
-            deffer.resolve(data);
-        });
-        return deffer.promise;
-    };
-
-    this.getRecipe = function (id) {
-        var deffer = $q.defer();
-        var url = "http://localhost:8080/RecipeApp/webresources/recipe/" + id;
         $http.get(url).then(function (data) {
             deffer.resolve(data);
         });
